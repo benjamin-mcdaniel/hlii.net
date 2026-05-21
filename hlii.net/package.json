@@ -1,0 +1,14 @@
+{
+  "name": "hlii-net",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HLII v1 public site deployed on Cloudflare Workers.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "check": "wrangler check",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.21.0"
+  }
+}
