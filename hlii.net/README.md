@@ -2,7 +2,7 @@
 
 HLII stands for `Hard Limits & Incentives Index`.
 
-This repo contains a small public-facing pilot for `hlii.net`:
+This repo contains a small public-facing beta for `hlii.net`:
 
 - static site assets in `public/`
 - a small Cloudflare Worker in `src/`
@@ -23,10 +23,10 @@ npm run deploy
 
 ## Current scope
 
-Version one is intentionally small:
+Current beta scope is intentionally small:
 
 - methodology-first
-- pilot company universe
+- beta company universe
 - hand-authored seed scorecards
 - no paid data vendors
 - no background services

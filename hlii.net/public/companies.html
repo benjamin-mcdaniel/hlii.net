@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HLII | Company Table</title>
+    <meta name="description" content="HLII company table beta. Large-cap companies scored across earnings, cash, momentum, price, and market alignment.">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body data-page="companies">
+    <div class="site-shell">
+      <header class="site-header border-bottom border-dark-subtle">
+        <nav class="container py-3 d-flex justify-content-between align-items-center gap-3 flex-wrap">
+          <a class="brand-mark text-decoration-none" href="/">
+            <span class="brand-kicker">HLII</span>
+            <span class="brand-text">Hard Limits &amp; Incentives Index</span>
+          </a>
+          <div class="nav-links">
+            <a href="/" data-nav="home">Overview</a>
+            <a href="/market.html" data-nav="market">Market</a>
+            <a href="/companies.html" data-nav="companies">Companies</a>
+            <a href="/method.html" data-nav="method">Method</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="container py-5">
+        <div class="section-head mb-4">
+          <p class="eyebrow mb-2">Companies</p>
+          <h1 class="display-6 mb-2">Tracked names</h1>
+          <p class="text-secondary mb-0">Large-cap beta universe with compact reads instead of long writeups.</p>
+        </div>
+
+        <section class="surface">
+          <div class="table-responsive">
+            <table class="table table-dark align-middle score-table company-table-wide">
+              <thead>
+                <tr>
+                  <th scope="col">Company</th>
+                  <th scope="col">Sector</th>
+                  <th scope="col">HLII</th>
+                  <th scope="col">Earnings</th>
+                  <th scope="col">Cash</th>
+                  <th scope="col">Direction</th>
+                  <th scope="col">Momentum</th>
+                  <th scope="col">Volume</th>
+                  <th scope="col">Alignment</th>
+                  <th scope="col">Read</th>
+                </tr>
+              </thead>
+              <tbody id="companies-table"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
