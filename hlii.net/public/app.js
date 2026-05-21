@@ -35,8 +35,8 @@ function renderOverview(scorecards) {
   const cards = [
     { title: "Universe", value: scorecards.length, copy: "Large-cap beta set" },
     { title: "Average HLII", value: averageScore, copy: "Overall market posture" },
-    { title: "Positive breadth", value: `${Math.round((positive / scorecards.length) * 100)}%`, copy: "Names scoring 60+" },
-    { title: "Price aligned", value: `${Math.round((aligned / scorecards.length) * 100)}%`, copy: "Price matches operating read" }
+    { title: "Positive breadth", value: `${Math.round((positive / scorecards.length) * 100)}%`, copy: "Names in the stronger range" },
+    { title: "Price aligned", value: `${Math.round((aligned / scorecards.length) * 100)}%`, copy: "Market action tracks company read" }
   ];
 
   summaryRoot.innerHTML = cards.map((card) => `
@@ -120,10 +120,10 @@ function renderMarket(scorecards) {
   `).join("");
 
   readRoot.innerHTML = [
-    "Price is not the only score.",
-    "Cash matters, but it does not define the whole board.",
-    "Momentum and volume help show whether the market agrees.",
-    "Alignment flags are where the interesting names start."
+    "Price is only one layer of the picture.",
+    "Cash matters, but it does not define the whole view.",
+    "Momentum and volume help show where the market is leaning.",
+    "Alignment gaps are often where the interesting names start."
   ].map((item) => `<div class="signal-item">${item}</div>`).join("");
 
   sectorRoot.innerHTML = sectors

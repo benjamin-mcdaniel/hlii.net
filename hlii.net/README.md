@@ -27,8 +27,8 @@ Current beta scope is intentionally small:
 
 - methodology-first
 - beta company universe
-- hand-authored seed scorecards
+- hand-authored seed views
 - no paid data vendors
 - no background services
 
-The next practical step would be replacing the seed scorecards with a filings-backed scoring pipeline built from SEC data.
+The next practical step would be replacing the seed views with a filings-backed data pipeline built from SEC data.
