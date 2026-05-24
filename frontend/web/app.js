@@ -1,4 +1,13 @@
-// Shared site script — nav highlighting + reports list rendering.
+// Shared site script - nav highlighting + reports list rendering.
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
 
 function setActiveNav() {
   const path = window.location.pathname;
@@ -37,20 +46,20 @@ async function loadReportCatalog() {
         (item) => `
           <article class="report-row">
             <div>
-              <div class="report-meta">${item.date || "Undated"} · ${item.topic || "General"}</div>
-              <h3>${item.title}</h3>
-              <p class="card-copy" style="margin:0.35rem 0 0">${item.summary || ""}</p>
+              <div class="report-meta">${escapeHtml(item.date || "Undated")} - ${escapeHtml(item.topic || "General")}</div>
+              <h3>${escapeHtml(item.title || "Untitled report")}</h3>
+              <p class="card-copy" style="margin:0.35rem 0 0">${escapeHtml(item.summary || "")}</p>
             </div>
             <div class="report-actions">
-              <a class="btn btn-accent" href="/reports.html?file=${encodeURIComponent(item.file)}&title=${encodeURIComponent(item.title)}">View</a>
-              <a class="btn btn-outline" href="${item.file}" download>Download</a>
+              <a class="btn btn-accent" href="/reports.html?file=${encodeURIComponent(item.file || "")}&title=${encodeURIComponent(item.title || "")}">View</a>
+              <a class="btn btn-outline" href="${escapeHtml(item.file || "#")}" download>Download</a>
             </div>
           </article>
         `
       )
       .join("");
   } catch (error) {
-    root.innerHTML = `<div class="signal-item">Could not load report catalog: ${error.message}</div>`;
+    root.innerHTML = `<div class="signal-item">Could not load report catalog: ${escapeHtml(error.message)}</div>`;
   }
 }
 

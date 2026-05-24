@@ -1,0 +1,9 @@
+{
+  "name": "hlii-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static HLII website for Cloudflare Pages.",
+  "scripts": {
+    "build": "node build-check.mjs"
+  }
+}

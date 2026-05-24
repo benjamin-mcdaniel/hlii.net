@@ -5,10 +5,10 @@
 // INGEST_TOKEN secret (set with `wrangler secret put INGEST_TOKEN`).
 //
 // Endpoints:
-//   GET  /health                      → service ping
-//   POST /ingest/bills                → batch ingest legislative bills
-//   POST /ingest/rulings              → batch ingest court rulings
-//   POST /ingest/reports              → upload a published report PDF to R2
+//   GET  /health                      -> service ping
+//   POST /ingest/bills                -> batch ingest legislative bills
+//   POST /ingest/rulings              -> batch ingest court rulings
+//   POST /ingest/reports              -> upload a published report PDF to R2
 
 const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -30,20 +30,28 @@ function methodNotAllowed() {
 
 function checkToken(request, env) {
   const provided = request.headers.get("x-ingest-token");
-  return Boolean(provided) && provided === env.INGEST_TOKEN;
+  return Boolean(provided) && Boolean(env.INGEST_TOKEN) && provided === env.INGEST_TOKEN;
 }
 
-async function handleBills(request, env) {
+function invalidFilename(filename) {
+  return (
+    !filename ||
+    filename.includes("..") ||
+    filename.includes("/") ||
+    filename.includes("\\") ||
+    !filename.toLowerCase().endsWith(".pdf")
+  );
+}
+
+async function handleBills(request) {
   const payload = await request.json().catch(() => null);
   if (!payload || !Array.isArray(payload.items)) {
     return json({ error: "Expected { items: [...] }" }, 400);
   }
-  // Stub: when DB binding is enabled, INSERT here.
-  // const stmt = env.DB.prepare("INSERT OR REPLACE INTO bills ...");
   return json({ ok: true, accepted: payload.items.length });
 }
 
-async function handleRulings(request, env) {
+async function handleRulings(request) {
   const payload = await request.json().catch(() => null);
   if (!payload || !Array.isArray(payload.items)) {
     return json({ error: "Expected { items: [...] }" }, 400);
@@ -56,13 +64,20 @@ async function handleReportUpload(request, env) {
   if (!filename) {
     return json({ error: "Missing X-Report-Filename header" }, 400);
   }
-  if (!env.REPORTS_BUCKET) {
-    // R2 binding not configured yet — accept but do not store.
-    return json({ ok: true, stored: false, reason: "REPORTS_BUCKET not bound" });
+  if (invalidFilename(filename)) {
+    return json({ error: "X-Report-Filename must be a bare .pdf filename" }, 400);
   }
+  if (!request.body) {
+    return json({ error: "Missing request body" }, 400);
+  }
+  if (!env.REPORTS_BUCKET) {
+    return json({ error: "REPORTS_BUCKET not bound" }, 503);
+  }
+
   await env.REPORTS_BUCKET.put(filename, request.body, {
     httpMetadata: { contentType: "application/pdf" }
   });
+
   return json({ ok: true, stored: true, key: filename });
 }
 
@@ -71,6 +86,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/health") {
+      if (request.method !== "GET") return methodNotAllowed();
       return json({
         ok: true,
         service: env.SERVICE || "hlii-backend-api",
@@ -78,15 +94,18 @@ export default {
       });
     }
 
+    if (!env.INGEST_TOKEN) {
+      return json({ error: "INGEST_TOKEN not configured" }, 503);
+    }
     if (!checkToken(request, env)) return unauthorized();
 
     if (url.pathname === "/ingest/bills") {
       if (request.method !== "POST") return methodNotAllowed();
-      return handleBills(request, env);
+      return handleBills(request);
     }
     if (url.pathname === "/ingest/rulings") {
       if (request.method !== "POST") return methodNotAllowed();
-      return handleRulings(request, env);
+      return handleRulings(request);
     }
     if (url.pathname === "/ingest/reports") {
       if (request.method !== "POST") return methodNotAllowed();

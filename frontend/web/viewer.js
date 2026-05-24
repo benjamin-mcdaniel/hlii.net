@@ -31,6 +31,20 @@ const state = {
   pending: null
 };
 
+function normalizeReportPath(file) {
+  if (!file) return null;
+
+  try {
+    const url = new URL(file, window.location.origin);
+    if (url.origin !== window.location.origin) return null;
+    if (!url.pathname.startsWith("/reports/")) return null;
+    if (!url.pathname.toLowerCase().endsWith(".pdf")) return null;
+    return `${url.pathname}${url.search}`;
+  } catch {
+    return null;
+  }
+}
+
 function fail(message) {
   empty.style.display = "block";
   canvas.style.display = "none";
@@ -54,7 +68,7 @@ async function render(num) {
 
     await page.render({ canvasContext: ctx, viewport }).promise;
     pageInfo.textContent = `Page ${num} / ${state.doc.numPages}`;
-    zoomInfo.textContent = `${Math.round(state.scale * 80)}%`;
+    zoomInfo.textContent = `${Math.round(state.scale * 100)}%`;
     prevBtn.disabled = num <= 1;
     nextBtn.disabled = num >= state.doc.numPages;
   } finally {
@@ -111,5 +125,10 @@ zoomOutBtn.addEventListener("click", () => {
 });
 
 if (fileParam) {
-  load(fileParam, titleParam);
+  const normalizedFile = normalizeReportPath(fileParam);
+  if (!normalizedFile) {
+    fail("Invalid report path.");
+  } else {
+    load(normalizedFile, titleParam);
+  }
 }

@@ -1,3 +1,13 @@
+# Node / wrangler
 node_modules/
 .wrangler/
-frontend/
+.dev.vars
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
