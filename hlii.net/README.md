@@ -1,34 +1,104 @@
-# HLII v1
+# hlii.net
 
-HLII stands for `Hard Limits & Incentives Index`.
+HLII tracks legislative bills and court rulings, and publishes data-driven
+PDF reports on how the legal landscape is moving (counts, mix, pace, and
+the structural reasons behind the changes). MVP build — the public site
+explains the goal, the reports do the real work.
 
-This repo contains a small public-facing beta for `hlii.net`:
+## Repo layout
 
-- static site assets in `public/`
-- a small Cloudflare Worker in `src/`
-- Wrangler configuration in `wrangler.jsonc`
+Only two top-level folders contain code. Everything else is workflow / docs.
+
+```
+frontend/
+  web/   Static site. Auto-deployed by Cloudflare Pages on push to main.
+         Includes the PDF viewer (pdf.js) and the /reports/ catalog + PDFs.
+  api/   Cloudflare Worker — user-interface API at hlii.net/api/*.
+         Deployed by GitHub Actions (deploy-frontend-api.yml).
+
+backend/
+  api/      Cloudflare Worker — ingest API at backend.hlii.net.
+            Accepts data from the collector scripts. Writes to D1 / R2.
+            Deployed by GitHub Actions (deploy-backend-api.yml).
+  scripts/  Python collectors (bills, rulings). Run by GitHub Actions on a
+            schedule, POSTed to backend.hlii.net/ingest/*.
+```
+
+## Deploys
+
+| Surface             | How                                            | Where                 |
+| ------------------- | ---------------------------------------------- | --------------------- |
+| Static site         | Cloudflare Pages auto-deploy on push to `main` | `hlii.net`            |
+| Frontend API worker | GitHub Actions → `wrangler deploy`             | `hlii.net/api/*`      |
+| Backend API worker  | GitHub Actions → `wrangler deploy`             | `backend.hlii.net`    |
+| Data collectors     | GitHub Actions scheduled run + on-demand       | POST to backend       |
+
+The two worker deploys are separate workflows with separate `wrangler.jsonc`
+files, so they ship independently.
+
+## Cloudflare Pages setup
+
+Point the Cloudflare Pages project at this repo with:
+
+- Build command: *(none)*
+- Build output directory: `frontend/web`
+- Production branch: `main`
+
+Pages will redeploy automatically whenever `frontend/web` changes.
+
+## GitHub Actions secrets
+
+Set these once in repo Settings → Secrets and variables → Actions:
+
+- **`CLOUDFLARE_API_TOKEN`** — used by both wrangler deploy workflows.
+  One Cloudflare API token with rights to deploy Workers and manage the
+  D1 database and R2 bucket the backend binds to.
+- **`HLII_INGEST_TOKEN`** — used by the collector workflow. Shared secret;
+  the collectors send it as `X-Ingest-Token`, the backend worker reads the
+  same value as the `INGEST_TOKEN` wrangler secret.
+
+On the backend worker, set the matching secret with:
+
+```
+cd backend/api
+npx wrangler secret put INGEST_TOKEN
+```
+
+## Reports
+
+Each report is a fixed PDF in `frontend/web/reports/` plus an entry in
+`frontend/web/reports/index.json`. To publish a new report:
+
+1. Drop the PDF into `frontend/web/reports/`.
+2. Add an entry to `index.json` (id, title, summary, date, topic, file).
+3. Commit + push — Cloudflare Pages redeploys the site.
+
+The viewer (`frontend/web/viewer.js`) loads PDFs by `?file=` query param on
+`/reports.html`, so catalog links open inline.
 
 ## Local development
 
-```bash
+Each worker has its own package.json:
+
+```
+# Frontend API
+cd frontend/api
 npm install
-npm run dev
+npx wrangler dev
+
+# Backend API
+cd backend/api
+npm install
+npx wrangler dev
 ```
 
-## Deploy
+The static site is just files — open `frontend/web/index.html` directly or
+serve it with any static server.
 
-```bash
-npm run deploy
-```
+## Scope (MVP)
 
-## Current scope
-
-Current beta scope is intentionally small:
-
-- methodology-first
-- beta company universe
-- hand-authored seed views
-- no paid data vendors
-- no background services
-
-The next practical step would be replacing the seed views with a filings-backed data pipeline built from SEC data.
+- Static MVP site explaining what HLII tracks.
+- PDF viewer on `/reports.html` with a demo report.
+- Frontend API and backend API split, both deploying via GitHub Actions.
+- Collectors are placeholder stubs that POST sample payloads end-to-end.
+- No contact info, no analytics, no third-party trackers.

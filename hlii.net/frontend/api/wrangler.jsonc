@@ -1,0 +1,16 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "hlii-frontend-api",
+  "main": "./src/index.js",
+  "compatibility_date": "2026-05-20",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "hlii.net/api/*",
+      "zone_name": "hlii.net"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

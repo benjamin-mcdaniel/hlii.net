@@ -1,11 +1,10 @@
 {
-  "name": "hlii-net",
+  "name": "hlii-frontend-api",
   "version": "0.1.0",
   "private": true,
-  "description": "HLII v1 public site deployed on Cloudflare Workers.",
+  "description": "HLII user-interface API worker. Serves read-only data for the public site.",
   "scripts": {
     "dev": "wrangler dev",
-    "check": "wrangler check",
     "deploy": "wrangler deploy"
   },
   "devDependencies": {

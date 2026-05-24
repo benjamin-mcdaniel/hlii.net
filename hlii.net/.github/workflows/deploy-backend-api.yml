@@ -1,0 +1,43 @@
+name: Deploy Backend API
+
+# Deploys the backend ingest worker at backend/api to Cloudflare.
+# Separate from the frontend API so each can ship independently.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/api/**"
+      - ".github/workflows/deploy-backend-api.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: wrangler deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/api
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: backend/api/package.json
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Deploy worker
+        run: npx wrangler deploy
+        env:
+          # CLOUDFLARE_API_TOKEN must have rights to deploy Workers and to
+          # manage the D1 database and R2 bucket the backend binds to.
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reports — HLII</title>
+    <meta name="description" content="Published HLII reports on legislative bills and court rulings." />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/">
+          <span class="brand-kicker">HLII</span>
+          <span class="brand-text">Legal Bills &amp; Rulings Tracker</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/" data-nav="home">Overview</a>
+          <a href="/reports.html" data-nav="reports">Reports</a>
+          <a href="/method.html" data-nav="method">Method</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">Reports</p>
+          <h1>Published findings.</h1>
+          <p class="lead">
+            Each report is a self-contained PDF. Click view to read inline, or download to keep a
+            local copy. The list is generated from the catalog at <code>/reports/index.json</code>.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Catalog</p>
+              <h2>Latest first</h2>
+            </div>
+          </div>
+          <div id="report-list" class="report-list">
+            <div class="signal-item">Loading reports…</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Viewer</p>
+              <h2 id="viewer-title">Select a report to view</h2>
+            </div>
+            <a id="download-link" class="btn btn-outline" href="#" style="display:none">Download PDF</a>
+          </div>
+          <div class="viewer-shell">
+            <div class="viewer-toolbar">
+              <div class="group">
+                <button class="viewer-btn" id="prev-page" disabled>‹ Prev</button>
+                <button class="viewer-btn" id="next-page" disabled>Next ›</button>
+                <span class="viewer-meta" id="page-info">—</span>
+              </div>
+              <div class="group">
+                <button class="viewer-btn" id="zoom-out" disabled>−</button>
+                <span class="viewer-meta" id="zoom-info">100%</span>
+                <button class="viewer-btn" id="zoom-in" disabled>+</button>
+              </div>
+            </div>
+            <div id="pdf-canvas-wrap">
+              <div class="viewer-empty" id="viewer-empty">
+                Pick a report above to load it here.
+              </div>
+              <canvas id="pdf-canvas" style="display:none"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>HLII is a public data project. Reports are informational, not legal advice.</span>
+        <span>MVP build · Reports published as PDFs</span>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs" type="module"></script>
+    <script src="/app.js" type="module"></script>
+    <script src="/viewer.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "hlii-backend-api",
+  "main": "./src/index.js",
+  "compatibility_date": "2026-05-20",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "backend.hlii.net/*",
+      "zone_name": "hlii.net"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+
+  // Bindings below are created/managed in the Cloudflare dashboard or via
+  // wrangler with the worker's CLOUDFLARE_API_TOKEN. Uncomment and fill in IDs
+  // once the resources exist.
+  //
+  // "d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "hlii",
+  //     "database_id": "<fill-in>"
+  //   }
+  // ],
+  //
+  // "r2_buckets": [
+  //   {
+  //     "binding": "REPORTS_BUCKET",
+  //     "bucket_name": "hlii-reports"
+  //   }
+  // ],
+
+  // INGEST_TOKEN is a shared secret between this worker and the collector
+  // scripts running in GitHub Actions. Set with:
+  //   wrangler secret put INGEST_TOKEN
+  "vars": {
+    "SERVICE": "hlii-backend-api"
+  }
+}

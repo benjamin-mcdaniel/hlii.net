@@ -1,0 +1,63 @@
+name: Collect Data
+
+# Runs the backend collector scripts on a schedule and POSTs their output to
+# the backend ingest worker. Also runnable on demand.
+
+on:
+  schedule:
+    # Daily at 12:00 UTC
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "backend/scripts/**"
+      - ".github/workflows/collect-data.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  collect-bills:
+    name: Collect bills
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/scripts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: backend/scripts/requirements.txt
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run collector
+        run: python collect_bills.py
+        env:
+          HLII_INGEST_URL: https://backend.hlii.net/ingest/bills
+          # Shared secret with the backend worker. Set in repo secrets.
+          # The backend worker also reads it as INGEST_TOKEN.
+          HLII_INGEST_TOKEN: ${{ secrets.HLII_INGEST_TOKEN }}
+
+  collect-rulings:
+    name: Collect rulings
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend/scripts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: backend/scripts/requirements.txt
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Run collector
+        run: python collect_rulings.py
+        env:
+          HLII_INGEST_URL: https://backend.hlii.net/ingest/rulings
+          HLII_INGEST_TOKEN: ${{ secrets.HLII_INGEST_TOKEN }}
