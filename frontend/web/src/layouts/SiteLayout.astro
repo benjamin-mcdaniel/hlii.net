@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title,
-  description = "HLII tracks legislative bills and court rulings and publishes data-driven reports on how the legal landscape is moving.",
+  description = "Harbor Legal Independent Index tracks legislative bills and court rulings and publishes data-driven reports on how the legal landscape is moving.",
   activeNav
 } = Astro.props;
 ---
@@ -21,13 +21,15 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <a class="brand" href="/">
+          <img class="brand-mark" src="/logo-harbor.svg" alt="Harbor Legal Independent Index logo" width="40" height="40" />
           <span class="brand-kicker">HLII</span>
-          <span class="brand-text">Legal Bills &amp; Rulings Tracker</span>
+          <span class="brand-text">Harbor Legal Independent Index</span>
         </a>
         <nav class="nav-links">
           <a href="/" class:list={{ active: activeNav === "home" }}>Overview</a>
@@ -43,7 +45,7 @@ const {
 
     <footer class="site-footer">
       <div class="container">
-        <span>HLII is a public data project. Reports are informational, not legal advice.</span>
+        <span>Harbor Legal Independent Index is a public data project. Reports are informational, not legal advice.</span>
         <span>MVP build - Reports published as PDFs</span>
       </div>
     </footer>

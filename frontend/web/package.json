@@ -2,7 +2,7 @@
   "name": "hlii-web",
   "version": "0.1.0",
   "private": true,
-  "description": "Astro frontend for HLII.",
+  "description": "Astro frontend for Harbor Legal Independent Index.",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

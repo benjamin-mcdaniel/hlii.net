@@ -70,6 +70,13 @@ a:hover {
   color: var(--ink);
 }
 
+.brand-mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  align-self: center;
+}
+
 .brand-kicker {
   color: var(--accent);
   font-size: 0.75rem;

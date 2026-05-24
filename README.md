@@ -1,6 +1,8 @@
 # hlii.net
 
-HLII tracks legislative bills and court rulings, and publishes data-driven
+Harbor Legal Independent Index (HLII)
+
+Harbor Legal Independent Index tracks legislative bills and court rulings, and publishes data-driven
 PDF reports on how the legal landscape is moving (counts, mix, pace, and
 the structural reasons behind the changes). MVP build - the public site
 explains the goal, the reports do the real work.
@@ -106,7 +108,7 @@ Astro outputs the production site to `frontend/web/dist`.
 
 ## Scope (MVP)
 
-- Static MVP site explaining what HLII tracks.
+- Static MVP site explaining what Harbor Legal Independent Index tracks.
 - PDF viewer on `/reports` with a demo report.
 - Frontend API and backend API split, both deploying via GitHub Actions.
 - Collectors are placeholder stubs that POST sample payloads end-to-end.
