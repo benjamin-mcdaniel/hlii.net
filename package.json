@@ -1,0 +1,9 @@
+{
+  "name": "hlii-pages-root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Compatibility build for Cloudflare Pages when the repo root wraps the actual HLII project.",
+  "scripts": {
+    "build": "node scripts/build-static-site.mjs"
+  }
+}
