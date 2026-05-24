@@ -42,7 +42,7 @@ Point the Cloudflare Pages project at this repo with:
 
 - Root directory: `frontend/web`
 - Build command: `npm run build`
-- Build output directory: `.`
+- Build output directory: `dist`
 - Production branch: `main`
 
 Pages will redeploy automatically whenever `frontend/web` changes.
@@ -67,16 +67,16 @@ npx wrangler secret put INGEST_TOKEN
 
 ## Reports
 
-Each report is a fixed PDF in `frontend/web/reports/` plus an entry in
-`frontend/web/reports/index.json`. To publish a new report:
+Each report is a fixed PDF in `frontend/web/public/reports/` plus an entry in
+`frontend/web/public/reports/index.json`. To publish a new report:
 
-1. Drop the PDF into `frontend/web/reports/`.
+1. Drop the PDF into `frontend/web/public/reports/`.
 2. Add an entry to `index.json` with `id`, `title`, `summary`, `date`,
    `topic`, and `file`.
 3. Commit and push. Cloudflare Pages redeploys the site.
 
-The viewer (`frontend/web/viewer.js`) loads PDFs by `?file=` query param on
-`/reports.html`, so catalog links open inline.
+The viewer (`frontend/web/public/viewer.js`) loads PDFs by `?file=` query
+param on `/reports`, so catalog links open inline.
 
 ## Local development
 
@@ -94,7 +94,7 @@ npm install
 npx wrangler dev
 ```
 
-The static site builds in place from `frontend/web`:
+The static site is an Astro app in `frontend/web`:
 
 ```bash
 cd frontend/web
@@ -102,13 +102,12 @@ npm install
 npm run build
 ```
 
-The build is a lightweight validation step for Cloudflare Pages. Output stays
-in the same directory, so Pages should publish `frontend/web` directly.
+Astro outputs the production site to `frontend/web/dist`.
 
 ## Scope (MVP)
 
 - Static MVP site explaining what HLII tracks.
-- PDF viewer on `/reports.html` with a demo report.
+- PDF viewer on `/reports` with a demo report.
 - Frontend API and backend API split, both deploying via GitHub Actions.
 - Collectors are placeholder stubs that POST sample payloads end-to-end.
 - No contact info, no analytics, and no third-party trackers.

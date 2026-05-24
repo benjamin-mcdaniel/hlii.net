@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  activeNav?: "home" | "reports" | "method";
+}
+
+const {
+  title,
+  description = "HLII tracks legislative bills and court rulings and publishes data-driven reports on how the legal landscape is moving.",
+  activeNav
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/">
+          <span class="brand-kicker">HLII</span>
+          <span class="brand-text">Legal Bills &amp; Rulings Tracker</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/" class:list={{ active: activeNav === "home" }}>Overview</a>
+          <a href="/reports" class:list={{ active: activeNav === "reports" }}>Reports</a>
+          <a href="/method" class:list={{ active: activeNav === "method" }}>Method</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>HLII is a public data project. Reports are informational, not legal advice.</span>
+        <span>MVP build - Reports published as PDFs</span>
+      </div>
+    </footer>
+  </body>
+</html>

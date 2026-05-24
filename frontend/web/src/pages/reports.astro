@@ -1,0 +1,87 @@
+---
+import { readFile } from "node:fs/promises";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const catalogPath = new URL("../../public/reports/index.json", import.meta.url);
+const catalog = JSON.parse(await readFile(catalogPath, "utf8"));
+const reports = Array.isArray(catalog.reports)
+  ? [...catalog.reports].sort((a, b) => (b.date || "").localeCompare(a.date || ""))
+  : [];
+---
+
+<SiteLayout title="Reports - HLII" description="Published HLII reports on legislative bills and court rulings." activeNav="reports">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Reports</p>
+      <h1>Published findings.</h1>
+      <p class="lead">
+        Each report is a self-contained PDF. Click view to read inline, or download to keep a
+        local copy. The list is generated from the catalog at <code>/reports/index.json</code>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Catalog</p>
+          <h2>Latest first</h2>
+        </div>
+      </div>
+      <div class="report-list">
+        {reports.length ? (
+          reports.map((item) => (
+            <article class="report-row">
+              <div>
+                <div class="report-meta">{item.date || "Undated"} - {item.topic || "General"}</div>
+                <h3>{item.title || "Untitled report"}</h3>
+                <p class="card-copy" style="margin:0.35rem 0 0">{item.summary || ""}</p>
+              </div>
+              <div class="report-actions">
+                <a class="btn btn-accent" href={`/reports?file=${encodeURIComponent(item.file || "")}&title=${encodeURIComponent(item.title || "")}`}>View</a>
+                <a class="btn btn-outline" href={item.file || "#"} download>Download</a>
+              </div>
+            </article>
+          ))
+        ) : (
+          <div class="signal-item">No reports published yet. Check back soon.</div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Viewer</p>
+          <h2 id="viewer-title">Select a report to view</h2>
+        </div>
+        <a id="download-link" class="btn btn-outline" href="#" style="display:none">Download PDF</a>
+      </div>
+      <div class="viewer-shell">
+        <div class="viewer-toolbar">
+          <div class="group">
+            <button class="viewer-btn" id="prev-page" disabled>&lt; Prev</button>
+            <button class="viewer-btn" id="next-page" disabled>Next &gt;</button>
+            <span class="viewer-meta" id="page-info">-</span>
+          </div>
+          <div class="group">
+            <button class="viewer-btn" id="zoom-out" disabled>-</button>
+            <span class="viewer-meta" id="zoom-info">100%</span>
+            <button class="viewer-btn" id="zoom-in" disabled>+</button>
+          </div>
+        </div>
+        <div id="pdf-canvas-wrap">
+          <div class="viewer-empty" id="viewer-empty">
+            Pick a report above to load it here.
+          </div>
+          <canvas id="pdf-canvas" style="display:none"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="/viewer.js"></script>
+</SiteLayout>

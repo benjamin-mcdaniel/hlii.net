@@ -2,8 +2,14 @@
   "name": "hlii-web",
   "version": "0.1.0",
   "private": true,
-  "description": "Static HLII website for Cloudflare Pages.",
+  "description": "Astro frontend for HLII.",
+  "type": "module",
   "scripts": {
-    "build": "node build-check.mjs"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.11.1"
   }
 }

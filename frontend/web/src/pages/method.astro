@@ -1,0 +1,80 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout title="Method - HLII" description="How HLII counts bills, rulings, and produces its reports." activeNav="method">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Method</p>
+      <h1>How we count.</h1>
+      <p class="lead">
+        HLII is methodology-first. We prefer fewer, cleaner counts to many noisy ones. Every
+        report names the dataset, the window, the filter, and the source.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="grid grid-2">
+        <article class="surface">
+          <div class="card-label">Bills</div>
+          <div class="card-value">Source &amp; scope</div>
+          <p class="card-copy">
+            Bills are sourced from public legislative trackers. Each bill is tagged by topic,
+            sponsor party, and stage reached (introduced, reported, passed chamber, signed).
+            Reports state the chamber and window used.
+          </p>
+        </article>
+        <article class="surface">
+          <div class="card-label">Rulings</div>
+          <div class="card-value">Source &amp; scope</div>
+          <p class="card-copy">
+            Rulings are sourced from court opinion feeds. Each is tagged by outcome (affirm,
+            reverse, remand) and broad subject. We do not opine on correctness - we count.
+          </p>
+        </article>
+        <article class="surface">
+          <div class="card-label">Comparison</div>
+          <div class="card-value">Windows</div>
+          <p class="card-copy">
+            "Last 2 years" and "prior 2 years" comparisons use rolling windows ending at the
+            report&apos;s publish date. Where a structural condition matters (e.g. 50/50 split),
+            the window matches the duration of that condition.
+          </p>
+        </article>
+        <article class="surface">
+          <div class="card-label">Publishing</div>
+          <div class="card-value">PDF-first</div>
+          <p class="card-copy">
+            Reports are published as PDFs so the numbers, charts, and dataset references stay
+            fixed at the moment of publication. The site catalog adds new reports as they ship.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="surface">
+        <p class="eyebrow">Caveats</p>
+        <h2 style="margin:0 0 0.6rem">Things we are explicit about</h2>
+        <div class="signal-stack">
+          <div class="signal-item">
+            Bill counts include re-introductions; reports note this when material.
+          </div>
+          <div class="signal-item">
+            Rulings counts exclude per curiam orders unless explicitly included.
+          </div>
+          <div class="signal-item">
+            State-level data lags federal; state-only reports name the source jurisdictions.
+          </div>
+          <div class="signal-item">
+            No predictions. HLII reports describe what happened, not what will happen.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

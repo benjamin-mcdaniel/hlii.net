@@ -1,6 +1,3 @@
-// PDF.js viewer for /reports.html. Reads ?file= and ?title= query params,
-// renders one page to a canvas, supports prev/next + zoom.
-
 import * as pdfjs from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs";
 
 const WORKER_SRC =
@@ -100,26 +97,26 @@ async function load(file, title) {
   }
 }
 
-prevBtn.addEventListener("click", () => {
+prevBtn?.addEventListener("click", () => {
   if (state.pageNum > 1) {
     state.pageNum--;
     render(state.pageNum);
   }
 });
 
-nextBtn.addEventListener("click", () => {
+nextBtn?.addEventListener("click", () => {
   if (state.doc && state.pageNum < state.doc.numPages) {
     state.pageNum++;
     render(state.pageNum);
   }
 });
 
-zoomInBtn.addEventListener("click", () => {
+zoomInBtn?.addEventListener("click", () => {
   state.scale = Math.min(state.scale + 0.25, 3);
   render(state.pageNum);
 });
 
-zoomOutBtn.addEventListener("click", () => {
+zoomOutBtn?.addEventListener("click", () => {
   state.scale = Math.max(state.scale - 0.25, 0.5);
   render(state.pageNum);
 });
