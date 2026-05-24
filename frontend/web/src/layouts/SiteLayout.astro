@@ -4,12 +4,12 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description?: string;
-  activeNav?: "home" | "reports" | "method";
+  activeNav?: "home" | "reports" | "search" | "method";
 }
 
 const {
   title,
-  description = "Harbor Legal Independent Index tracks legislative bills and court rulings and publishes data-driven reports on how the legal landscape is moving.",
+  description = "Harbor Legal Independent Index tracks legislative sources across America and publishes data-driven reports on how legal activity is moving.",
   activeNav
 } = Astro.props;
 ---
@@ -33,6 +33,7 @@ const {
         </a>
         <nav class="nav-links">
           <a href="/" class:list={{ active: activeNav === "home" }}>Overview</a>
+          <a href="/search" class:list={{ active: activeNav === "search" }}>Search</a>
           <a href="/reports" class:list={{ active: activeNav === "reports" }}>Reports</a>
           <a href="/method" class:list={{ active: activeNav === "method" }}>Method</a>
         </nav>

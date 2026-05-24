@@ -1,0 +1,131 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout title="Search - Harbor Legal Independent Index" description="Search coverage and source monitoring plans for Harbor Legal Independent Index." activeNav="search">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Search</p>
+      <h1>Search legal sources, not just published reports.</h1>
+      <p class="lead">
+        The search surface is where Harbor Legal Independent Index grows from a report site into a
+        legal-source intelligence product. The first layer is American laws and bill systems across
+        federal and state jurisdictions. Court material is not the main scope unless it is circuit
+        court level or above.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Federal bills</span>
+        <span class="tag">State legislatures</span>
+        <span class="tag">Endpoint health</span>
+        <span class="tag">Schema drift</span>
+        <span class="tag">Higher courts only later</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="grid grid-3">
+        <article class="surface">
+          <div class="card-label">What search will cover</div>
+          <div class="card-value">Sources</div>
+          <p class="card-copy">
+            Official state legislature sites, federal bill systems, search portals, feeds, static
+            pages, file exports, and any published metadata endpoint that can support bill tracking.
+          </p>
+        </article>
+        <article class="surface">
+          <div class="card-label">What search will show</div>
+          <div class="card-value">Status</div>
+          <p class="card-copy">
+            Whether a source has a working scraper, needs browser rendering, has blocking behavior,
+            changed design, or is stable enough to graduate into long-term collection.
+          </p>
+        </article>
+        <article class="surface">
+          <div class="card-label">What search leads to</div>
+          <div class="card-value">Analytics</div>
+          <p class="card-copy">
+            Coverage maps, trend views, stage-change dashboards, endpoint drift alerts, and later a
+            paid workflow for saved searches and member-only monitoring.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Multi-tier collection</p>
+          <h2>How source gathering should mature over time</h2>
+        </div>
+      </div>
+      <div class="roadmap-grid">
+        <article class="roadmap-step">
+          <div class="card-label">Tier 1</div>
+          <h3>Discovery and viability checks</h3>
+          <p>Start by locating official endpoints, search pages, feeds, and export patterns. The first question is whether a scraper works at all and how fragile the source appears.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Tier 2</div>
+          <h3>Direct structured collection</h3>
+          <p>Prefer official JSON, XML, CSV, RSS, or predictable HTML over anything expensive. If a direct collector works, that becomes the cheap default lane.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Tier 3</div>
+          <h3>Browser or container fallback</h3>
+          <p>When sites require client rendering, complex pagination, or session state, move the source into a Playwright-style browser worker or an isolated container collector.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Tier 4</div>
+          <h3>Unblocking services only when needed</h3>
+          <p>Use Bright Data or similar tools only for sources that block normal collection. That keeps cost low while still giving you a path through anti-bot friction.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Tier 5</div>
+          <h3>Drift detection and endpoint health</h3>
+          <p>Track DOM signatures, response shapes, screenshots, status codes, and schema checksums so source redesigns are detected before they silently poison the data pipeline.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Tier 6</div>
+          <h3>Promotion into durable pipelines</h3>
+          <p>Once a source is stable, move it into scheduled collection, normalized schemas, and production monitoring with alerting and retry logic.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Infrastructure options</p>
+          <h2>How this can be operated without locking into one shape too early</h2>
+        </div>
+      </div>
+      <div class="signal-stack">
+        <div class="signal-item">A local machine at home works well for low-cost source discovery, schema experiments, and less frequent validation runs.</div>
+        <div class="signal-item">One or more containers are a good fit when you want isolated browser collectors, per-state workers, or reproducible scraping environments.</div>
+        <div class="signal-item">A small VPS is useful when you need always-on schedulers, endpoint health checks, or public API jobs without leaving a home machine running.</div>
+        <div class="signal-item">A hybrid model is likely best: direct collectors run cheaply most of the time, while browser or Bright Data lanes are used only on harder jurisdictions.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="surface">
+        <p class="eyebrow">Membership later</p>
+        <h2 style="margin:0 0 0.6rem">The likely product path after search is working</h2>
+        <p class="lead" style="margin:0; max-width:unset">
+          Once source search, monitoring, and trends are stable, the next step is gated access:
+          accounts, saved searches, source watchlists, alerts, and paid membership for deeper legal
+          intelligence views. That should come after source quality and pipeline reliability are
+          proven, not before.
+        </p>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

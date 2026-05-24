@@ -6,14 +6,16 @@ import SiteLayout from "../layouts/SiteLayout.astro";
   <section class="hero">
     <div class="container">
       <p class="eyebrow">MVP - Public preview</p>
-      <h1>Tracking legislative bills and court rulings.</h1>
+      <h1>Tracking legal source activity across America.</h1>
       <p class="lead">
-        Harbor Legal Independent Index publishes data-driven reports on how legislative activity and court rulings are
-        shifting over time - counts, mix, pace, and the structural reasons behind the changes.
-        New reports drop as PDFs.
+        Harbor Legal Independent Index tracks legislative sources across federal and state systems,
+        monitors bill movement and source reliability, and publishes trend reports on where legal
+        activity is changing. Court content is not the main product surface, except for circuit
+        courts and above where it materially changes the legal landscape.
       </p>
       <div class="btn-row">
-        <a class="btn btn-accent" href="/reports">Read the latest report</a>
+        <a class="btn btn-accent" href="/search">Explore source search</a>
+        <a class="btn btn-outline" href="/reports">Read the latest report</a>
         <a class="btn btn-outline" href="/method">How we count</a>
       </div>
     </div>
@@ -24,27 +26,36 @@ import SiteLayout from "../layouts/SiteLayout.astro";
       <div class="grid grid-3">
         <article class="surface">
           <div class="card-label">What we track</div>
-          <div class="card-value">Bills</div>
+          <div class="card-value">Legal sources</div>
           <p class="card-copy">
-            Federal and state bills introduced, advanced, and signed - broken out by topic,
-            sponsor party, and stage.
+            Federal and state bill pages, search portals, feeds, and official endpoint surfaces -
+            broken out by jurisdiction, chamber, topic, and stage coverage.
           </p>
+          <div class="card-actions">
+            <a class="btn btn-outline" href="/search">Open search page</a>
+          </div>
         </article>
         <article class="surface">
           <div class="card-label">What we track</div>
-          <div class="card-value">Rulings</div>
+          <div class="card-value">Bills first</div>
           <p class="card-copy">
-            Appellate and supreme court rulings - affirm, reverse, remand - with reasoning
-            tags and downstream effect.
+            The core focus is laws and legislation. Case law is only a later layer, limited to
+            federal circuit courts, state supreme courts, and the Supreme Court.
           </p>
+          <div class="card-actions">
+            <a class="btn btn-outline" href="/method">See scope rules</a>
+          </div>
         </article>
         <article class="surface">
           <div class="card-label">What we publish</div>
-          <div class="card-value">Reports</div>
+          <div class="card-value">Monitoring plans</div>
           <p class="card-copy">
-            Periodic PDFs - for example "fiscal bills up 5% over the last 2 years" or
-            "bill output down 50% under a 50/50 split."
+            Trend reports, source-health views, and endpoint coverage maps that show which federal
+            and state systems are stable, changing, blocked, or worth deeper extraction work.
           </p>
+          <div class="card-actions">
+            <a class="btn btn-outline" href="/reports">View report examples</a>
+          </div>
         </article>
       </div>
     </div>
@@ -54,18 +65,51 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Example findings</p>
-          <h2>The kind of data we surface</h2>
+          <p class="eyebrow">What changes</p>
+          <h2>The kind of source and trend signals we surface</h2>
         </div>
-        <a href="/reports">All reports -&gt;</a>
+        <a href="/search">Search coverage -&gt;</a>
       </div>
       <div class="surface">
         <div class="signal-stack">
-          <div class="signal-item">Fiscal bills introduced rose ~5% over the last 2 years.</div>
-          <div class="signal-item">Bill output dropped ~50% during periods of 50/50 chamber splits.</div>
-          <div class="signal-item">Reversal rate on appellate rulings trended up in regulatory cases.</div>
-          <div class="signal-item">Median time from introduction to vote stretched by ~18%.</div>
+          <div class="signal-item">A state legislature changed its bill search markup and the scraper drift detector caught it before collection fully failed.</div>
+          <div class="signal-item">A federal source exposed a stable JSON feed, letting us replace brittle HTML scraping with a cheaper direct collector.</div>
+          <div class="signal-item">A source started rate-limiting basic fetches, so it moved into a fallback browser or Bright Data lane instead of blocking the whole pipeline.</div>
+          <div class="signal-item">Bill stage coverage expanded from introduced-only to committee, chamber passage, and enactment once the endpoint map stabilized.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Roadmap</p>
+          <h2>Where the product is headed</h2>
+        </div>
+      </div>
+      <div class="roadmap-grid">
+        <article class="roadmap-step">
+          <div class="card-label">Stage one</div>
+          <h3>Search and source coverage</h3>
+          <p>Build a searchable map of federal and state legal sources, endpoint types, scraper status, and drift risk.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Stage two</div>
+          <h3>Trend and monitoring views</h3>
+          <p>Turn collection into timelines, coverage gaps, source-health alerts, and topic-level bill movement dashboards.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Stage three</div>
+          <h3>Higher-court signal layer</h3>
+          <p>Add circuit courts and above only where decisions materially reshape the legal landscape behind legislative topics.</p>
+        </article>
+        <article class="roadmap-step">
+          <div class="card-label">Stage four</div>
+          <h3>Membership and saved workflows</h3>
+          <p>Later, gated accounts can unlock saved searches, alerts, source watchlists, and paid access to refined analytics.</p>
+        </article>
       </div>
     </div>
   </section>
