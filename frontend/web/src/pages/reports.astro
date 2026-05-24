@@ -40,7 +40,7 @@ const reports = Array.isArray(catalog.reports)
                 <p class="card-copy" style="margin:0.35rem 0 0">{item.summary || ""}</p>
               </div>
               <div class="report-actions">
-                <a class="btn btn-accent" href={`/reports?file=${encodeURIComponent(item.file || "")}&title=${encodeURIComponent(item.title || "")}`}>View</a>
+                <a class="btn btn-accent" href={`/reports/?file=${encodeURIComponent(item.file || "")}&title=${encodeURIComponent(item.title || "")}`}>View</a>
                 <a class="btn btn-outline" href={item.file || "#"} download>Download</a>
               </div>
             </article>
