@@ -1,0 +1,39 @@
+name: Auto Data · Bills · Nebraska
+
+on:
+  schedule:
+    - cron: '57 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - run: pip install -r backend/scripts/requirements.txt
+
+      - name: Restore cursor
+        uses: actions/cache@v4
+        with:
+          path: .cursor/ne.json
+          key: cursor-ne-${{ github.run_number }}
+          restore-keys: cursor-ne-
+
+      - name: Run Nebraska collector
+        run: python backend/scripts/bills/ne.py
+        env:
+          HLII_INGEST_TOKEN: ${{ secrets.HLII_INGEST_TOKEN }}
+
+      - name: Save cursor
+        uses: actions/cache@v4
+        with:
+          path: .cursor/ne.json
+          key: cursor-ne-${{ github.run_number }}

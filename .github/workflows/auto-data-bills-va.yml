@@ -1,0 +1,39 @@
+name: Auto Data · Bills · Virginia
+
+on:
+  schedule:
+    - cron: '25 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - run: pip install -r backend/scripts/requirements.txt
+
+      - name: Restore cursor
+        uses: actions/cache@v4
+        with:
+          path: .cursor/va.json
+          key: cursor-va-${{ github.run_number }}
+          restore-keys: cursor-va-
+
+      - name: Run Virginia collector
+        run: python backend/scripts/bills/va.py
+        env:
+          HLII_INGEST_TOKEN: ${{ secrets.HLII_INGEST_TOKEN }}
+
+      - name: Save cursor
+        uses: actions/cache@v4
+        with:
+          path: .cursor/va.json
+          key: cursor-va-${{ github.run_number }}
