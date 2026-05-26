@@ -2,14 +2,16 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
-<SiteLayout title="Method - Harbor Legal Independent Index" description="How Harbor Legal Independent Index counts bills, legal sources, and higher-court signals." activeNav="method">
+<SiteLayout title="What we cover - Harbor Legal Independent Index" description="Every US state legislature, Congress, all 13 federal appeals circuits, and the Supreme Court. Nothing below appeals court level." activeNav="method">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Method</p>
-      <h1>How we count.</h1>
+      <p class="eyebrow">What we cover</p>
+      <h1>Every legislature. Every appeals court. Nothing below.</h1>
       <p class="lead">
-        Harbor Legal Independent Index is methodology-first. We prefer fewer, cleaner counts to many noisy ones. Every
-        report names the dataset, the jurisdiction, the legal source, and the collection lane.
+        Harbor Legal Independent Index draws a deliberate line. All 50 state legislatures and
+        Congress on the bills side. All 13 federal appeals circuits and the Supreme Court on the
+        courts side. Local courts and trial-level decisions are outside scope — they don't reshape
+        the legal landscape the way appellate rulings do.
       </p>
     </div>
   </section>
@@ -18,38 +20,41 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="container">
       <div class="grid grid-2">
         <article class="surface">
-          <div class="card-label">Bills</div>
-          <div class="card-value">Source &amp; scope</div>
+          <div class="card-label">Legislation</div>
+          <div class="card-value">All 50 states + Congress</div>
           <p class="card-copy">
-            Bills are sourced from public legislative trackers. Each bill is tagged by topic,
-            sponsor party, and stage reached (introduced, reported, passed chamber, signed).
-            Reports state the chamber and window used.
+            Bills are collected daily from each state's official legislative system and from
+            Congress.gov. Every bill is tracked from introduction through committee, chamber
+            passage, and signing. States with active sessions update more frequently; off-session
+            states are checked for interim activity.
           </p>
         </article>
         <article class="surface">
           <div class="card-label">Courts</div>
-          <div class="card-value">Limited inclusion</div>
+          <div class="card-value">Circuits and SCOTUS only</div>
           <p class="card-copy">
-            Court content is not the default product lane. If included, it is limited to federal
-            circuit courts, state supreme courts, and the Supreme Court where the signal matters
-            for nationwide or statewide legal trend analysis.
+            Court coverage is limited to federal appeals circuits (CA1–CA11, DC Circuit, Federal
+            Circuit) and the Supreme Court — including opinions, orders, cert grants, and cert
+            denials. These are the decisions that change how laws are read and applied nationwide
+            or across a region.
           </p>
         </article>
         <article class="surface">
-          <div class="card-label">Monitoring</div>
-          <div class="card-value">Windows and drift</div>
+          <div class="card-label">Classification</div>
+          <div class="card-value">Areas of law</div>
           <p class="card-copy">
-            Trend comparisons use rolling windows, but source monitoring also tracks endpoint
-            drift, schema changes, blocking behavior, and whether a jurisdiction is stable enough
-            to trust in comparative views.
+            Every bill and opinion is mapped to a plain-language legal domain — housing, labor,
+            privacy, firearms, and others — so you can follow a topic across every jurisdiction
+            without knowing the statutory codes or case names involved.
           </p>
         </article>
         <article class="surface">
-          <div class="card-label">Publishing</div>
-          <div class="card-value">Search first, reports second</div>
+          <div class="card-label">Freshness</div>
+          <div class="card-value">Daily, where sessions allow</div>
           <p class="card-copy">
-            Search and source coverage come first. Reports package the most stable findings after
-            the collection lane, source structure, and endpoint quality are understood.
+            Most states update the index daily. Some legislatures publish updates less frequently
+            depending on session schedule and how their official systems expose data. The index
+            reflects the most recent available state for each jurisdiction.
           </p>
         </article>
       </div>
@@ -59,20 +64,20 @@ import SiteLayout from "../layouts/SiteLayout.astro";
   <section>
     <div class="container">
       <div class="surface">
-        <p class="eyebrow">Caveats</p>
-        <h2 style="margin:0 0 0.6rem">Things we are explicit about</h2>
+        <p class="eyebrow">What we don't claim</p>
+        <h2 style="margin:0 0 0.6rem">Being clear about the limits</h2>
         <div class="signal-stack">
           <div class="signal-item">
-            Bill counts include re-introductions; reports note this when material.
+            Bill counts can include re-introductions from prior sessions; reports note this where it affects interpretation.
           </div>
           <div class="signal-item">
-            Court coverage is intentionally narrow; lower-court case law is outside the main scope.
+            Court coverage is intentionally narrow — trial courts and administrative bodies are outside scope, even when their decisions are significant locally.
           </div>
           <div class="signal-item">
-            State-level data lags federal; state-only reports name the source jurisdictions.
+            Some state data lags by a day or more depending on when official systems publish updates. Session-specific timing is noted per jurisdiction.
           </div>
           <div class="signal-item">
-            No predictions. Harbor Legal Independent Index reports describe what happened, not what will happen.
+            The index describes what has happened — bills introduced, rulings issued, laws signed. It does not predict outcomes or provide legal advice.
           </div>
         </div>
       </div>
