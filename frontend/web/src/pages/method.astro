@@ -2,16 +2,15 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
-<SiteLayout title="What we cover - Harbor Legal Independent Index" description="Every US state legislature, Congress, all 13 federal appeals circuits, and the Supreme Court. Nothing below appeals court level." activeNav="method">
+<SiteLayout title="Method - Harbor Legal Independent Index" description="The HLII method: track official American legal sources, keep court coverage appellate-only, and expose aggregate public-record data safely." activeNav="method">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">What we cover</p>
-      <h1>Every legislature. Every appeals court. Nothing below.</h1>
+      <p class="eyebrow">Method</p>
+      <h1>Official sources first. Aggregate output second.</h1>
       <p class="lead">
-        Harbor Legal Independent Index draws a deliberate line. All 50 state legislatures and
-        Congress on the bills side. All 13 federal appeals circuits and the Supreme Court on the
-        courts side. Local courts and trial-level decisions are outside scope — they don't reshape
-        the legal landscape the way appellate rulings do.
+        Harbor Legal Independent Index is built around source discipline. The project tracks
+        legislatures, Congress, federal appeals circuits, and the Supreme Court, then reduces that
+        public movement into records that can be reported, queried, and eventually exposed to MCP.
       </p>
     </div>
   </section>
@@ -23,38 +22,34 @@ import SiteLayout from "../layouts/SiteLayout.astro";
           <div class="card-label">Legislation</div>
           <div class="card-value">All 50 states + Congress</div>
           <p class="card-copy">
-            Bills are collected daily from each state's official legislative system and from
-            Congress.gov. Every bill is tracked from introduction through committee, chamber
-            passage, and signing. States with active sessions update more frequently; off-session
-            states are checked for interim activity.
+            Bills are collected from official legislative systems and Congress.gov where available.
+            The source record matters as much as the bill record: freshness, coverage, collector
+            behavior, and gaps should be visible.
           </p>
         </article>
         <article class="surface">
           <div class="card-label">Courts</div>
           <div class="card-value">Circuits and SCOTUS only</div>
           <p class="card-copy">
-            Court coverage is limited to federal appeals circuits (CA1–CA11, DC Circuit, Federal
-            Circuit) and the Supreme Court — including opinions, orders, cert grants, and cert
-            denials. These are the decisions that change how laws are read and applied nationwide
-            or across a region.
+            Court coverage is limited to federal appeals circuits and the Supreme Court, including
+            opinions and selected order activity. Local courts and trial-level decisions stay out of
+            scope for the MVP.
           </p>
         </article>
         <article class="surface">
           <div class="card-label">Classification</div>
           <div class="card-value">Areas of law</div>
           <p class="card-copy">
-            Every bill and opinion is mapped to a plain-language legal domain — housing, labor,
-            privacy, firearms, and others — so you can follow a topic across every jurisdiction
-            without knowing the statutory codes or case names involved.
+            Records are mapped to plain-language domains so people and agents can ask about legal
+            movement without knowing every statutory code, bill number, or case citation in advance.
           </p>
         </article>
         <article class="surface">
-          <div class="card-label">Freshness</div>
-          <div class="card-value">Daily, where sessions allow</div>
+          <div class="card-label">Interface</div>
+          <div class="card-value">Read-only first</div>
           <p class="card-copy">
-            Most states update the index daily. Some legislatures publish updates less frequently
-            depending on session schedule and how their official systems expose data. The index
-            reflects the most recent available state for each jurisdiction.
+            Public access should begin with cacheable read-only endpoints: reports, source status,
+            aggregate movement, and topic summaries. Write-side ingest stays private.
           </p>
         </article>
       </div>
@@ -68,16 +63,16 @@ import SiteLayout from "../layouts/SiteLayout.astro";
         <h2 style="margin:0 0 0.6rem">Being clear about the limits</h2>
         <div class="signal-stack">
           <div class="signal-item">
-            Bill counts can include re-introductions from prior sessions; reports note this where it affects interpretation.
+            HLII is not a legal research database yet. The first durable product is source tracking and aggregate legal movement.
           </div>
           <div class="signal-item">
-            Court coverage is intentionally narrow — trial courts and administrative bodies are outside scope, even when their decisions are significant locally.
+            Court coverage is intentionally narrow. Trial courts and administrative bodies are outside scope, even when their decisions are important locally.
           </div>
           <div class="signal-item">
-            Some state data lags by a day or more depending on when official systems publish updates. Session-specific timing is noted per jurisdiction.
+            Source freshness depends on official systems. Some states publish slowly, change markup, or require custom collection handling.
           </div>
           <div class="signal-item">
-            The index describes what has happened — bills introduced, rulings issued, laws signed. It does not predict outcomes or provide legal advice.
+            The index describes public-record movement. It does not predict outcomes, rank legal importance, or provide legal advice.
           </div>
         </div>
       </div>

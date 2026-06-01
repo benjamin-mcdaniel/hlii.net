@@ -2,15 +2,15 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
-<SiteLayout title="Browse - Harbor Legal Independent Index" description="Browse bills and court rulings across every US jurisdiction. Filter by state, area of law, or court — or search for something specific." activeNav="browse">
+<SiteLayout title="Coverage - Harbor Legal Independent Index" description="Review the legal sources Harbor Legal Independent Index is built to track before the public aggregate endpoint opens." activeNav="browse">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Browse</p>
-      <h1>Start anywhere. The whole picture is already here.</h1>
+      <p class="eyebrow">Coverage map</p>
+      <h1>The index starts with sources, then becomes searchable data.</h1>
       <p class="lead">
-        Pick a state, a court, or an area of law and see everything in motion. You don't need to
-        know what you're looking for to get value from the index — but when you do have something
-        specific in mind, search is there.
+        This page is the public source inventory for the MVP. The important promise is not a
+        polished search box yet; it is a durable map of which official sources HLII watches, how
+        often they move, and what can be exposed safely through aggregate endpoints.
       </p>
       <div class="tag-row">
         <span class="tag">All 50 states</span>
@@ -26,29 +26,27 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="container">
       <div class="grid grid-3">
         <article class="surface">
-          <div class="card-label">By jurisdiction</div>
-          <div class="card-value">State or federal</div>
+          <div class="card-label">Legislatures</div>
+          <div class="card-value">State + federal</div>
           <p class="card-copy">
-            Choose any state or the federal level and see what's been introduced, what's moved,
-            and what's been signed into law this session — updated daily from official legislative
-            sources.
+            Every state legislature and Congress belong in the coverage map. The source record
+            should track URL, collector status, freshness, available fields, and known quirks.
           </p>
         </article>
         <article class="surface">
-          <div class="card-label">By topic</div>
-          <div class="card-value">Area of law</div>
+          <div class="card-label">Courts</div>
+          <div class="card-value">Appellate only</div>
           <p class="card-copy">
-            Follow housing, privacy, labor, firearms, or any major legal domain across every
-            jurisdiction at once. See the full scope of what's moving without manually checking
-            each state.
+            Court coverage stays limited to federal appeals circuits and the Supreme Court. That
+            line keeps collection manageable and avoids pretending trial-level data is normalized.
           </p>
         </article>
         <article class="surface">
-          <div class="card-label">By court</div>
-          <div class="card-value">Rulings that matter</div>
+          <div class="card-label">Topics</div>
+          <div class="card-value">Plain-language tags</div>
           <p class="card-copy">
-            Browse federal appeals circuits and Supreme Court opinions filtered to decisions that
-            shift how existing law is interpreted — and see which active bills they connect to.
+            Topic tags should be explainable to non-specialists and useful to agents: privacy,
+            housing, labor, firearms, education, elections, healthcare, and other stable domains.
           </p>
         </article>
       </div>
@@ -59,40 +57,40 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">How the index is organized</p>
-          <h2>What you can navigate without searching</h2>
+          <p class="eyebrow">Endpoint shape</p>
+          <h2>What the first aggregate API should expose</h2>
         </div>
       </div>
       <div class="roadmap-grid">
         <article class="roadmap-step">
-          <div class="card-label">Bills</div>
-          <h3>Introduction through enactment</h3>
-          <p>Every bill is tracked from introduction through committee, chamber passage, and signing. Filter by stage to see what's active, what stalled, and what became law.</p>
+          <div class="card-label">Sources</div>
+          <h3>Coverage and freshness</h3>
+          <p>Jurisdiction, source URL, collector name, last successful check, last observed movement, current status, and notes about source quirks.</p>
         </article>
         <article class="roadmap-step">
-          <div class="card-label">Courts</div>
-          <h3>Opinions and orders</h3>
-          <p>Circuit court opinions, SCOTUS decisions, cert grants, and orders — with enough context to understand what changed and which statutes or pending bills are affected.</p>
+          <div class="card-label">Movement</div>
+          <h3>Aggregate legal events</h3>
+          <p>Counts and recent examples by jurisdiction, topic, source type, and stage. This is useful before opening full-text legal record search.</p>
         </article>
         <article class="roadmap-step">
-          <div class="card-label">Areas of law</div>
-          <h3>Cross-jurisdiction topics</h3>
-          <p>A single view across all states and federal activity for a given legal domain. See the full legislative and court picture for a topic without constructing it yourself.</p>
+          <div class="card-label">Reports</div>
+          <h3>Human-readable findings</h3>
+          <p>Published reports remain the stable public artifact while collection logic matures. They also give agents a small, reliable citation surface.</p>
         </article>
         <article class="roadmap-step">
-          <div class="card-label">Connections</div>
-          <h3>Bills and rulings together</h3>
-          <p>When a court ruling reshapes how a statute is read, the affected bills surface alongside it. When a bill passes that codifies a recent ruling, the link is there.</p>
+          <div class="card-label">MCP</div>
+          <h3>Tool-safe queries</h3>
+          <p>Start with bounded tools: get source status, list recent movement, summarize topic drift, and fetch report metadata. Keep writes private.</p>
         </article>
         <article class="roadmap-step">
-          <div class="card-label">Recency</div>
-          <h3>What moved this week</h3>
-          <p>A feed of recent activity across the whole index — bills that advanced, opinions that dropped, cert grants that signal a coming shift. No digging required.</p>
+          <div class="card-label">Limits</div>
+          <h3>What stays out</h3>
+          <p>No private user data, no legal advice, no lower-court firehose, and no expensive AI endpoint on the public path until usage justifies it.</p>
         </article>
         <article class="roadmap-step">
           <div class="card-label">Search</div>
-          <h3>When you need something specific</h3>
-          <p>Full-text search across bills, opinions, and summaries when you already know what you're looking for — a bill number, a case name, a statutory term, a keyword.</p>
+          <h3>After the model settles</h3>
+          <p>Full-text search should come after the source records and aggregate event schema are boring enough to leave alone.</p>
         </article>
       </div>
     </div>
@@ -101,12 +99,12 @@ import SiteLayout from "../layouts/SiteLayout.astro";
   <section>
     <div class="container">
       <div class="surface">
-        <p class="eyebrow">Coming next</p>
-        <h2 style="margin:0 0 0.6rem">Alerts and saved views</h2>
+        <p class="eyebrow">Current public JSON</p>
+        <h2 style="margin:0 0 0.6rem">Start with the report catalog</h2>
         <p class="lead" style="margin:0; max-width:unset">
-          Once the index is stable, the next layer is personalization: follow a bill, watch a
-          jurisdiction, subscribe to an area of law. Get notified when something you care about
-          moves, without having to check back manually.
+          `/api/reports` is the only public dynamic endpoint today. That is a good MVP boundary:
+          readable, cheap, cacheable, and safe while the source and movement endpoints are still
+          being shaped.
         </p>
       </div>
     </div>

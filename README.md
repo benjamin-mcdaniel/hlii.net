@@ -2,10 +2,10 @@
 
 Harbor Legal Independent Index (HLII)
 
-Harbor Legal Independent Index tracks legislative bills and court rulings, and publishes data-driven
-PDF reports on how the legal landscape is moving (counts, mix, pace, and
-the structural reasons behind the changes). MVP build - the public site
-explains the goal, the reports do the real work.
+Harbor Legal Independent Index tracks American legal-source movement across
+legislatures and higher courts, then packages the aggregate record for reports,
+APIs, and future MCP access. MVP build: reports are public now; source status
+and movement endpoints come next.
 
 ## Repo layout
 
@@ -111,5 +111,6 @@ Astro outputs the production site to `frontend/web/dist`.
 - Static MVP site explaining what Harbor Legal Independent Index tracks.
 - PDF viewer on `/reports` with a demo report.
 - Frontend API and backend API split, both deploying via GitHub Actions.
+- Public dynamic endpoint is intentionally limited to `/api/reports` today.
 - Collectors are placeholder stubs that POST sample payloads end-to-end.
 - No contact info, no analytics, and no third-party trackers.

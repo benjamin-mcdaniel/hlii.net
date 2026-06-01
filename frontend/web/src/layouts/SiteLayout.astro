@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title,
-  description = "Harbor Legal Independent Index surfaces bills and court rulings across all 50 states and federal courts — so you can see what's happening in American law without having to go looking for it.",
+  description = "Harbor Legal Independent Index tracks American legal-source movement across legislatures and higher courts, then packages the aggregate record for reports, APIs, and future MCP access.",
   activeNav
 } = Astro.props;
 ---
@@ -33,7 +33,7 @@ const {
         </a>
         <nav class="nav-links">
           <a href="/" class:list={{ active: activeNav === "home" }}>Overview</a>
-          <a href="/search/" class:list={{ active: activeNav === "browse" }}>Browse</a>
+          <a href="/search/" class:list={{ active: activeNav === "browse" }}>Coverage</a>
           <a href="/reports/" class:list={{ active: activeNav === "reports" }}>Reports</a>
           <a href="/method/" class:list={{ active: activeNav === "method" }}>Method</a>
         </nav>
@@ -46,8 +46,8 @@ const {
 
     <footer class="site-footer">
       <div class="container">
-        <span>Harbor Legal Independent Index is a public data project. Reports are informational, not legal advice.</span>
-        <span>MVP build - Reports published as PDFs</span>
+        <span>Harbor Legal Independent Index is an aggregate public-record project. Nothing here is legal advice.</span>
+        <span>MVP build: reports now, public data endpoint next, MCP access later.</span>
       </div>
     </footer>
   </body>

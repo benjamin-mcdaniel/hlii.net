@@ -5,18 +5,17 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 <SiteLayout title="Harbor Legal Independent Index" activeNav="home">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Public preview</p>
-      <h1>See what's moving in American law, right now.</h1>
+      <p class="eyebrow">Aggregate legal-source intelligence</p>
+      <h1>Track the public record of American law as one data layer.</h1>
       <p class="lead">
-        Bills are introduced, amended, and signed into law every day across all 50 states and
-        Congress. Appeals courts and the Supreme Court hand down rulings that reshape how those
-        laws are read. Harbor Legal Independent Index tracks all of it — so you can follow what's
-        happening without having to go looking for it.
+        Harbor Legal Independent Index watches bills, laws, and higher-court rulings from official
+        American legal sources, then turns that movement into aggregate records that can power
+        reports, dashboards, APIs, and future MCP tools.
       </p>
       <div class="btn-row">
-        <a class="btn btn-accent" href="/search/">Browse the index</a>
+        <a class="btn btn-accent" href="/search/">See coverage</a>
         <a class="btn btn-outline" href="/reports/">Latest reports</a>
-        <a class="btn btn-outline" href="/method/">What we cover</a>
+        <a class="btn btn-outline" href="/method/">Review method</a>
       </div>
     </div>
   </section>
@@ -25,39 +24,38 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="container">
       <div class="grid grid-3">
         <article class="surface">
-          <div class="card-label">Legislation</div>
-          <div class="card-value">Bills in motion</div>
+          <div class="card-label">Source watch</div>
+          <div class="card-value">Legislatures</div>
           <p class="card-copy">
-            Every state legislature and Congress, tracked daily. See what's been introduced,
-            what's moved through committee, what passed, and what was signed — across any
-            state or the whole country at once.
+            State legislatures and Congress are tracked as official source systems, not as isolated
+            news events. The useful unit is movement: introduced, amended, advanced, passed, signed,
+            or stalled.
           </p>
           <div class="card-actions">
-            <a class="btn btn-outline" href="/search/">Browse bills</a>
+            <a class="btn btn-outline" href="/search/">View source map</a>
           </div>
         </article>
         <article class="surface">
-          <div class="card-label">Case law</div>
-          <div class="card-value">Court signals</div>
+          <div class="card-label">Ruling watch</div>
+          <div class="card-value">Higher courts</div>
           <p class="card-copy">
-            Federal appeals circuits and the Supreme Court, including orders, cert grants, and
-            opinions. When a ruling changes how a law is read, it shows up here alongside the
-            legislation it touches.
+            Court coverage stays intentionally narrow: federal appeals circuits and the Supreme
+            Court. The goal is to capture rulings that reshape interpretation, not every dispute in
+            the country.
           </p>
           <div class="card-actions">
-            <a class="btn btn-outline" href="/search/">Browse courts</a>
+            <a class="btn btn-outline" href="/method/">Coverage rules</a>
           </div>
         </article>
         <article class="surface">
-          <div class="card-label">By topic</div>
-          <div class="card-value">Areas of law</div>
+          <div class="card-label">Data endpoint</div>
+          <div class="card-value">Agent-ready path</div>
           <p class="card-copy">
-            Follow a legal domain — housing, privacy, firearms, labor — and see every bill and
-            ruling that touches it, across every jurisdiction, without piecing it together
-            yourself.
+            Reports are the first public output. The next layer is a clean aggregate endpoint for
+            source status and legal movement, shaped so MCP tools can ask focused questions later.
           </p>
           <div class="card-actions">
-            <a class="btn btn-outline" href="/search/">Browse by area</a>
+            <a class="btn btn-outline" href="/api/reports">Current JSON</a>
           </div>
         </article>
       </div>
@@ -68,17 +66,17 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">What surfaces</p>
-          <h2>The kind of signals the index catches</h2>
+          <p class="eyebrow">What the aggregate should answer</p>
+          <h2>Questions worth exposing through an API</h2>
         </div>
-        <a href="/search/">Browse the index -&gt;</a>
+        <a href="/search/">Coverage map -&gt;</a>
       </div>
       <div class="surface">
         <div class="signal-stack">
-          <div class="signal-item">A circuit court ruling changed how a federal privacy statute applies to state agencies — bills in three states are now being amended in response.</div>
-          <div class="signal-item">Fourteen state legislatures introduced nearly identical housing bills in the same two-week window — one has already cleared committee.</div>
-          <div class="signal-item">The Supreme Court granted cert on a case about administrative rulemaking authority — related legislation is now stalled in Congress pending the outcome.</div>
-          <div class="signal-item">A law signed in California is being used as a template in five other states — the same language is showing up in bills introduced this session.</div>
+          <div class="signal-item">Which jurisdictions changed source data this week, and what type of legal movement did they publish?</div>
+          <div class="signal-item">Which bill topics are spreading across states, and which official sources show the same language pattern?</div>
+          <div class="signal-item">Which circuit or Supreme Court rulings changed the reading of statutes that active bills reference?</div>
+          <div class="signal-item">Which sources are stale, blocked, or structurally different enough to need a special collector?</div>
         </div>
       </div>
     </div>
@@ -88,30 +86,67 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Where this is going</p>
-          <h2>What gets added as the index grows</h2>
+          <p class="eyebrow">Public interface path</p>
+          <h2>Small steps toward MCP access</h2>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <article class="surface">
+          <div class="card-label">Available now</div>
+          <div class="card-value">Report catalog</div>
+          <p class="card-copy">
+            The public JSON surface is intentionally tiny: `/api/reports` exposes the current report
+            catalog and keeps the site readable by people and machines.
+          </p>
+        </article>
+        <article class="surface">
+          <div class="card-label">Next</div>
+          <div class="card-value">Source status</div>
+          <p class="card-copy">
+            Add a read-only endpoint for source coverage, freshness, and collection state before
+            exposing raw legal records. This keeps the first API cheap and safe.
+          </p>
+        </article>
+        <article class="surface">
+          <div class="card-label">Later</div>
+          <div class="card-value">MCP tools</div>
+          <p class="card-copy">
+            Wrap the aggregate endpoints as tools such as source lookup, jurisdiction movement, and
+            topic drift. Auth can stay simple until there is user-specific saved data.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Build order</p>
+          <h2>Keep the project cheap and walk-away safe</h2>
         </div>
       </div>
       <div class="roadmap-grid">
         <article class="roadmap-step">
           <div class="card-label">Now</div>
-          <h3>Bills across all 50 states and Congress</h3>
-          <p>Daily collection from every state legislature and Congress.gov, normalized into a single index you can browse or search.</p>
+          <h3>Reports and source inventory</h3>
+          <p>Publish PDFs and keep the public site clear about what is covered, what is still in collection, and what is only planned.</p>
         </article>
         <article class="roadmap-step">
           <div class="card-label">Next</div>
-          <h3>Court opinions connected to legislation</h3>
-          <p>Appeals circuit and SCOTUS rulings linked to the bills and statutes they interpret, so you can see how case law is reshaping active legislation.</p>
+          <h3>Read-only aggregate API</h3>
+          <p>Expose source freshness, jurisdiction movement, and report metadata through bounded JSON endpoints before building account features.</p>
         </article>
         <article class="roadmap-step">
           <div class="card-label">Later</div>
-          <h3>Browse and follow by area of law</h3>
-          <p>Pick a legal domain — housing, labor, privacy — and see everything moving in that space across every jurisdiction, without constructing the view yourself.</p>
+          <h3>Legal record search</h3>
+          <p>Let users query bills, laws, and higher-court rulings once the stored data model is stable enough to support it honestly.</p>
         </article>
         <article class="roadmap-step">
           <div class="card-label">Future</div>
-          <h3>Alerts and saved views</h3>
-          <p>Get notified when something you care about moves. Watch a bill, follow a state, or track a topic area and receive updates when the index changes.</p>
+          <h3>MCP and saved views</h3>
+          <p>Open machine access first for aggregate public data, then add private saved views only when there is a real user need.</p>
         </article>
       </div>
     </div>
